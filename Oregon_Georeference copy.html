@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Preview</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+  <style type="text/css">
+    body {
+       margin: 0;
+       padding: 0;
+    }
+    html, body, #map{
+       width: 100%;
+       height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+
+      var map = L.map('map').setView([45.504780, -122.65977870910629], 14.0);
+      
+      var ESRI = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+      }).addTo(map);
+
+      var daPhoto = L.tileLayer('./Tiles2/{z}/{x}/{y}.png', {
+        minZoom: 12,
+        maxZoom: 16,
+        tms: false,
+        attribution: 'USGS'
+      }).addTo(map);
+
+      var daTiles = {
+        "ESRI":ESRI,
+        "Oregon Photo":daPhoto
+      }
+
+      var rossisland = L.icon({
+      iconUrl: 'https://cdn.iconscout.com/icon/premium/png-128-thumb/island-1606825-1363106.png',
+      iconSize: [50,50],
+      popupAnchor: [0,0]
+      })
+      
+      var daMarkerpopup = "Ross Island has seen marked recession. It is clear that the tip of the island has eroded away significantly since 1983. Additionally, the body of the island is much smaller and almost appears hollowed out toward the southern region. Fun fact: Ross Island was once used as a mining area for sand and gravel, but now much of it is a designated Wildlife Refuge! <br/><img src = 'https://lowercolumbiasolutionsdotorg1.files.wordpress.com/2014/12/rossisland2.jpg'width='100px'/>";
+
+      var daMarker = L.marker ([45.495, -122.664], {icon:rossisland}).addTo(map)
+      .bindPopup(daMarkerpopup)
+      .openPopup();
+      
+      var laddsaddition = L.icon ({
+        iconUrl: 'https://cdn.iconscout.com/icon/premium/png-128-thumb/tree-1384-1127538.png',
+        iconSize: [50,50],
+        popupAnchor: [0,0]
+        })
+      
+      var daMarker2popup = "Ladds Addition, one of the most famous neighborhoods in Portland, has not seen any major transformations. I found this area to be extraordinarily interesting, as it possesses a distinct pattern that has not changed much since the neighborhood was built in 1891-- 130 years ago! The neighborhood itself contains five parks which, as stipulated when the land was granted to the City of Portland, may not be disturbed in any way. Sometimes the areas that have not changed are just as meaningful as the ones that have! <br/><img src ='https://tclf.org/sites/default/files/thumbnails/image/6092815589_51d7394950_o.jpg'width='100px'/>";
+
+      var daMarker2 = L.marker ([45.5086, -122.649425], {icon:laddsaddition}).addTo(map)
+      .bindPopup(daMarker2popup)
+      .openPopup();
+
+      var tilikumbridge = L.icon({
+        iconUrl: 'https://cdn.iconscout.com/icon/premium/png-128-thumb/bridge-1654546-1403580.png',
+        iconSize: [50,50],
+        popupAnchor: [0,0]
+      })
+      
+      var daMarker3popup = "Tilikum Crossing Bridge has clearly seen a great deal of change since 1983; after all, it was only built in 2014! The bridge itself has altered the landscape around it; requiring the construction of two new road sections which merge onto existing highways on the east and west banks of the Willamette River. This also required the demolition of a number of buildings, most notably a building complex on the western side of the shore and a circular structure on the eastern side. Fun fact: Tilikum Crossing Bridge is also called the Bridge of the People and is the largest car-free bridge in the United States!  <br/><img src ='https://www.lightthebridges.org/wp-content/uploads/2019/12/Tilikum_Crossing.jpg'width='100px'/>";
+
+      var daMarker3 = L.marker ([45.5053, -122.666657], {icon:tilikumbridge}).addTo(map)
+      .bindPopup(daMarker3popup)
+      .openPopup();
+      
+      var daVector = {
+        "Ross Island":daMarker,
+        "Ladds Addition":daMarker2,
+        "Tilikum Crossing Bridge": daMarker3 
+      }
+
+      L.control.layers(daTiles, daVector).addTo(map);
+      
+  </script>
+</body>
+</html>
