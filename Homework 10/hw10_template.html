@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 7</title>
+</head>
+<body>
+<h1>Homework 10: Geoprocessing Analysis </h1>
+<h2>Olivia Senor</h2>
+<h3>This is my map of Asheville, NC! The question I sought to ask was "where do areas at risk for flooding exist in relation to Asheville's major rivers?" In Asheville, the rainy months can bring heavy flooding, especially around the French Broad, so I was curious to see how this impacts residents. </h3>
+
+<h4>The geoprocessing methods I utilized were the clip, intersect, and buffer functions. I first used the clip function to ensure that the "Rivers" shapefile was contained within the Buncombe county area (I did this by using a North Carolina county map in the background, which I later removed). The next tool I used was the intersect function, with which I was able to create a new layer called "Neighborhoods at Risk for Flooding" by intersecting the "Residential Areas at Risk for Flooding" layer  the "Asheville Neighborhoods" layer. This shows more clearly the specific neighborhoods within Asheville's flood zones. Finally, I created a buffer of 250 feet for the "Rivers" layer, just to show visually how far the rivers might flood.</h4>
+<h5>Some potential shortcomings of my map begin with the buffer layer. This buffer layer was arbitrarily chosen-- Asheville's rivers have an average flood height of 18 feet, but I was unsure as to what that might look like on a horizontal plane. 250 feet was the lowest value that was easily visible, so I chose it as my buffer thickness. This could potentially be misleading. Another issue is the massive section in the lower middle portion of my map, which falls under the "Residential Areas at Risk for Flooding" layer but not the "Asheville Neighborhoods" layer. My guess is that the creator of this dataset perhaps had different criteria for residential areas that were not limited to neighborhoods. This, too, though, is a bit of an anomaly.</h5>
+<!-- Your map goes here -->
+<a href="./Flood_Risk_Asheville.png">
+    <img src="./Flood_Risk_Asheville.png" alt="your map" width='500px'>
+    </a>
+
+<!-- Link to your shapefile in Github and you CSV -->
+<h2>Data used for this project</h2>
+    <a href="https://data-avl.opendata.arcgis.com/"> Website </a>
+    <p></p>
+    <a href="./Asheville_Neighborhoods.geojson"> Asheville Neighborhoods geoJSON </a>
+    <p></p>
+    <a href="./Residential_Areas_At_Risk.geojson">Residential Areas at Risk geoJSON</a>
+    <p></p>
+    <a href="./Neighborhoods_At_Risk.geojson"> Asheville Neighborhoods and Residential Areas at Risk Intersect (Neighborhoods at Risk) geoJSON</a>
+    <p></p>
+    <a href="./Rivers.geojson">Rivers geoJSON</a>
+    <p></p>
+    <a href="./Rivers_Clipped.geojson">Rivers Clipped geoJSON</a>
+    <p></p>
+    <a href="./Flood_Buffer.geojson">Rivers Buffer geoJSON</a>
+    <p></p>
+</body>
+</html>
